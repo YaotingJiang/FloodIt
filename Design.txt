@@ -1,0 +1,95 @@
+
+Cell Class:
+	The cell class has the parameters:
+		x			-- Describes the x position of the cell
+		y			-- Describes the y position of the cell
+		color       -- Describes the current color of the cell		
+		flooded     -- Notes whether the cell is flooded or not
+		pos         -- A Posn made from the x and y coordinates
+		left        -- Points to the cell to the left of this one
+		top         -- Points to the cell above this one
+		right       -- Points to the cell to the right of this one
+		bottom      -- Points to the cell below this one
+		colors      -- The list of possible colors that a cell can have
+		
+		*NOTE: A cell that is on the edge of the board will have its 
+		       values for left, top, right, and/or bottom (referred to
+		       as neighbors) set to null depending on where it is.
+		
+	There are two constructors in the Cell class. The first is the one
+	used when actually creating a cell for the game which sets the fields
+	to the proper values and chooses a random color for the cell. 
+	The second constructor is a convenience constructor for testing 
+	methods.
+	
+	There are a total of 4 methods in the Cell class:
+		image()  -- This method creates the WorldImage of the cell to 
+			place on the board based on the cells fields.
+	    initColors()  -- This method initializes the arrayList colors
+	    	and adds the colors allowed to the list.
+	    setColor(String color)  -- This method sets the color field
+	    	of the cell that invokes it to the given color
+	    update(String color)  -- This method checks the neighbors of the
+	    	cell that invokes it to see if they are cells that are 
+	    	not flooded and if their color is the same as the one passed 
+	    	to the method. If that's the case, then it updates those cells
+	    	to be flooded.
+	 
+FloodItWorld Class:
+	The flooditworld class has the parameters:
+		boardSize   -- Describes how many cells will be in each row
+		colorsUSED   -- Determines how many colors will be chosen for the cells
+		board        -- The arrayList that holds all the cells in the board
+		testBoardSize  -- A smaller version of boardSize used for testing
+		required     -- The number of clicks required to win the game
+		clicks		 -- The current number of clicks that the player has made
+		
+		*NOTE: testBoardSize should not be changed.
+		
+	There are two constructors in the FloodItWorld class. The first one
+	sets the boardSize and colorsUsed fields based on the inputs and also
+	generates the board of cells (board). It then sets the required field based
+	on boardSize and colorsUsed. 
+	The second constructor is a convenience constructor for testing with preset
+	values. 
+	
+	There are a total of 10 methods in the FloodItWorld class.
+		createCells(int size)  -- This method initializes the board ArrayList
+			and creates as many cells as boardSize^2. It then adds those cells
+			to the board and re-iterates through board to have each cell refer to
+			the correct neighbor cells.
+		whichCell(Posn pos)  -- This method determines which cell the player clicked
+			on based on the Posn passed to the method via the onMouseClicked(Posn pos)
+			method.
+		updateOnClick(Cell cell)  -- This method changes the first cell
+			in the board to have the same color as the cell that has been
+			clicked.
+		onMouseClicked(Posn pos)  -- This method checks to make sure that the 
+			player has clicked on a valid cell and then passes that cell to the 
+			whichCell(Posn pos) method and passes the result of that to 
+			updateOnClick(Cell cell).
+		makeScene()  -- This method makes the scene of the game. It creates a
+			scene with dimensions 1200 by 800 and then places the background 
+			image and the visual representation of the board of cells, the 
+			count of current clicks, the count of require clicks, and the
+			title of the game onto the scene. 
+		updateWorld()  -- This method checks all the cells in the board to see
+			which of them are flooded and sets those cells colors equal to the
+			color fo the first cell in the board.
+		allFlooded()  -- This method checks to see if all the cells in the board
+			are flooded. This is to determine if the player has won the game.
+		onTick()  -- This method calls updateWorld() at each tick.
+		onKeyEvent(String key)  -- This method parses key presses. If the player
+			presses "r" then the game will reset entirely and a new random board
+			of cells will be generated.
+		startGame(int gridSize, int numberOfColor) -- This method starts the game
+			with the inputs desired by the player.
+			
+Examples FloodIt class:
+	This class is entirely for examples and testing and the last test method is
+	where the player can alter the inputs for the game (boardSize and colorsUSED).
+	The inputs should be changed in both the new FloodItWorld(20, 6) and in 
+	w.startGame(20, 6).
+	
+		
+		

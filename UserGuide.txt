@@ -1,0 +1,11 @@
+
+The game goes as follows:
+	When you click a cell, the first cells at the top left will change to the color
+	of the cell that you clicked on. If any cells adjacent to the top left cell have
+	the new color, then when you click on another cell of a different color, they 
+	will all change to the new color. You goal is to make all the cells on the board
+	change to the same color in the required number of clicks as displayed on the 
+	right of your screen. The number of times you click will be kept track of and
+	updated, so there's no need to do that yourself.
+	
+	GOOD LUCK!
